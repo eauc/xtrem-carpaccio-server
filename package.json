@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node bin/www",
     "test": "./node_modules/jasmine-node/bin/jasmine-node .",
-    "postinstall": "node_modules/.bin/bower install"
+    "components": "node_modules/.bin/bower install --allow-root"
   },
   "dependencies": {
     "body-parser": "~1.10.2",

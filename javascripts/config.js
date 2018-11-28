@@ -50,7 +50,7 @@ Configuration.prototype = (function () {
             return self.props;
         },
 
-        watch: function (callback, watchOnce, interval) {
+        watch: function (callback, watchOnce, interval = 1000) {
             var self = this;
 
             fs.watchFile(self.filepath, {persistent: !watchOnce, interval: interval}, function (curr, prev) {
