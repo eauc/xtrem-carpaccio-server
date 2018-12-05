@@ -1,7 +1,7 @@
 var express = require('express'),
     _ = require('lodash');
 
-module.exports = function (sellerService, dispatcher) {
+module.exports = function (sellerService, dispatcher, configuration) {
   var router = express.Router();
   var OK = 200;
   var BAD_REQUEST = 400;
@@ -37,6 +37,17 @@ module.exports = function (sellerService, dispatcher) {
     } else {
       response.status(UNAUTHORIZED).send({message:'invalid name or password'});
     }
+  });
+
+  router.get('/config', function(request, response) {
+    response.json(configuration.props);
+  });
+
+  router.post('/config', function(request, response) {
+    var newConfig = request.body;
+    console.log("Reloading config from route", {newConfig});
+    configuration.props = newConfig;
+    response.status(201).end();
   });
 
   return router;
