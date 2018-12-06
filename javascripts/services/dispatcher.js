@@ -157,7 +157,11 @@ Dispatcher.prototype = (function () {
         this.shoppingIntervalInMillis = shoppingIntervalInMillis;
     };
 
-    function getReductionPeriodFor(reductionStrategy) {
+  function getReductionPeriodFor(reductionStrategy) {
+    if (_.isArray(reductionStrategy)) {
+      reductionStrategy = _.first(_.shuffle(reductionStrategy));
+    }
+
         if (reductionStrategy === 'PAY THE PRICE') {
             return new Period(Reduction.PAY_THE_PRICE, 10000);
         }
